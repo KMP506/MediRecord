@@ -4,17 +4,11 @@
  */
 package clinic;
 
-import java.util.Iterator;
-
 /**
  *
- * @author kevin
- * @param <T>
- * @param <K>
+ * @author isaac
  */
-public interface DynamicLists <T> {
-    public boolean add(T item);
-    public Iterator getAll();
-    public int size();
-    public boolean isEmpty();
+public interface KeyDynamicsList<T,K> extends DynamicLists{
+    public T get(K id);
+    public boolean remove(K id);
 }
