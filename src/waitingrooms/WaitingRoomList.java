@@ -4,10 +4,18 @@
  */
 package waitingrooms;
 
+import java.util.LinkedList;
+import java.util.Queue;
+import patients.Patient;
+
 /**
  *
  * @author Student
  */
-public class WaitingRoomList implements Sequential {
+public class WaitingRoomList implements SequentialDynamicsLists<Patient> {
+    private Queue<Patient> waitingList;
+    public WaitingRoomList(){
+        this.waitingList = new LinkedList();
+    }
     
 }
