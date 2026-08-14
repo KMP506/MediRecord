@@ -8,6 +8,6 @@ package waitingrooms;
  *
  * @author Student
  */
-public class WaitingRooms {
+public class WaitingRecordsList {
     
 }
