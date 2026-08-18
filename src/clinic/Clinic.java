@@ -30,21 +30,27 @@ public class Clinic {
     }
     
     public boolean addPatient(Patient patient) {
+        return patients.add(patient);
     }
 
     public Patient findPatient(String id) {
+        return patients.get(id);
     }
 
     public boolean removePatient(String id) {
+        return patients.remove(id);
     }
 
     public Iterator<Patient> getPatients() {
+        return patients.getAll();
     }
 
     public boolean scheduleAppointment(Appointment appointment) {
+        return appointments.add(appointment);
     }
 
     public Appointment findAppointment(String code) {
+        return appointments.get(code);
     }
 
     public boolean rescheduleAppointment(String code, LocalDate newDate, LocalTime newTime) {
