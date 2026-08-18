@@ -8,6 +8,9 @@ package clinic;
  *
  * @author Student
  */
-public interface views {
-    
+public interface views <T>{
+    public void clear();
+    public void showData(T data);
+    public void showError(String error);
+    public void showMessage(String message);
 }
