@@ -5,7 +5,7 @@
 package clinic;
 
 import appointments.Appointment;
-import appointments.AppointmentsLists;
+import appointments.AppointmentList;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Iterator;
@@ -19,12 +19,12 @@ import waitingrooms.WaitingRoomList;
  */
 public class Clinic {
     private PatientsList patients;
-    private AppointmentsLists appointments;
+    private AppointmentList appointments;
     private WaitingRoomList waitingRoom;
     
     public Clinic(){
         this.patients = new PatientsList();
-        this.appointments = new AppointmentsLists();
+        this.appointments = new AppointmentList();
         this.waitingRoom = new WaitingRoomList();
         
     }
