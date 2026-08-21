@@ -3,13 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package clinic;
-
+import clinic.Clinic;
+import patients.FrmPatients;
 /**
  *
  * @author kevin
  */
 public class FrmClinic extends javax.swing.JFrame {
     
+    
+    private Clinic clinic;
+    private ClinicController controller;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmClinic.class.getName());
 
     /**
@@ -17,6 +21,8 @@ public class FrmClinic extends javax.swing.JFrame {
      */
     public FrmClinic() {
         initComponents();
+        
+        clinic = new Clinic();
     }
 
     /**
@@ -149,7 +155,8 @@ public class FrmClinic extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        FrmPatients patients = new FrmPatients(clinic);
+        patients.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

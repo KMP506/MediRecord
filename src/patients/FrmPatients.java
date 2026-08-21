@@ -3,21 +3,33 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package patients;
+import clinic.Clinic;
+import clinic.ClinicController;
+import clinic.views;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 /**
  *
  * @author kevin
  */
-public class FrmPatients extends javax.swing.JFrame {
+public class FrmPatients extends javax.swing.JFrame implements views<Patient> {
+    
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmPatients.class.getName());
 
+    private ClinicController controller;
     /**
      * Creates new form FrmPatients
      */
     public FrmPatients() {
         initComponents();
+        
     }
+    public FrmPatients(Clinic clinic) {
+    initComponents();
+    controller = new ClinicController(this, clinic);
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,9 +43,9 @@ public class FrmPatients extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         txtNombre = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
-        textFechaN = new javax.swing.JTextField();
+        txtFechaN = new javax.swing.JTextField();
         lblFechaN = new javax.swing.JLabel();
-        tctTelefono = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
         lblTelefono = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
         lblCorreo = new javax.swing.JLabel();
@@ -43,7 +55,7 @@ public class FrmPatients extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         btnLimpiar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
-        btnReditar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         btnAtras = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnArchivo = new javax.swing.JButton();
@@ -56,11 +68,11 @@ public class FrmPatients extends javax.swing.JFrame {
 
         lblNombre.setText("Nombre completo:");
 
-        textFechaN.addActionListener(this::textFechaNActionPerformed);
+        txtFechaN.addActionListener(this::txtFechaNActionPerformed);
 
         lblFechaN.setText("Fecha de nacimiento:");
 
-        tctTelefono.addActionListener(this::tctTelefonoActionPerformed);
+        txtTelefono.addActionListener(this::txtTelefonoActionPerformed);
 
         lblTelefono.setText("Telefono:");
 
@@ -94,12 +106,12 @@ public class FrmPatients extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblFechaN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(textFechaN, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtFechaN, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(119, 119, 119)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblCorreo)))
-                    .addComponent(tctTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTelefono))
                 .addGap(87, 87, 87))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -119,7 +131,7 @@ public class FrmPatients extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(lblFechaN)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textFechaN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtFechaN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(lblCorreo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -138,7 +150,7 @@ public class FrmPatients extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblTelefono)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tctTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(55, 55, 55))
         );
 
@@ -153,13 +165,16 @@ public class FrmPatients extends javax.swing.JFrame {
         btnGuardar.addActionListener(this::btnGuardarActionPerformed);
         jPanel3.add(btnGuardar);
 
-        btnReditar.setText("Reditar");
-        jPanel3.add(btnReditar);
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(this::btnBuscarActionPerformed);
+        jPanel3.add(btnBuscar);
 
         btnAtras.setText("Atras");
+        btnAtras.addActionListener(this::btnAtrasActionPerformed);
         jPanel3.add(btnAtras);
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(this::btnCancelarActionPerformed);
         jPanel3.add(btnCancelar);
 
         btnArchivo.setText("Archivo");
@@ -192,29 +207,64 @@ public class FrmPatients extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
 
-    private void textFechaNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFechaNActionPerformed
+    private void txtFechaNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaNActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textFechaNActionPerformed
+    }//GEN-LAST:event_txtFechaNActionPerformed
 
-    private void tctTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tctTelefonoActionPerformed
+    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tctTelefonoActionPerformed
+    }//GEN-LAST:event_txtTelefonoActionPerformed
 
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        // TODO add your handling code here:
+        clear();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
+         if (txtCedula.getText().isEmpty()
+            || txtNombre.getText().isEmpty()
+            || txtFechaN.getText().isEmpty()
+            || txtTelefono.getText().isEmpty()
+            || txtCorreo.getText().isEmpty()) {
+        showError("Complete todos los campos");
+        return;
+    }try{
+        Patient patient = new Patient(
+                txtCedula.getText(),
+                txtNombre.getText(),
+                LocalDate.parse(txtFechaN.getText()),
+                txtTelefono.getText(),
+                txtCorreo.getText());
+
+        controller.registrPaciente(patient);
+    }catch(DateTimeParseException e) {
+        showError("Fecha incorrecta. Use AAAA-MM-DD");
+    }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArchivoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnArchivoActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        if (txtCedula.getText().isEmpty()) {
+        showError("Digite la cédula");
+        return;
+    }
+
+    controller.buscarPaciente(txtCedula.getText());
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnAtrasActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -244,10 +294,10 @@ public class FrmPatients extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnArchivo;
     private javax.swing.JButton btnAtras;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JButton btnReditar;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblCedula;
@@ -256,10 +306,39 @@ public class FrmPatients extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lbnPacientes;
-    private javax.swing.JTextField tctTelefono;
-    private javax.swing.JTextField textFechaN;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtFechaN;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void clear() {
+    txtCedula.setText("");
+    txtNombre.setText("");
+    txtFechaN.setText("");
+    txtTelefono.setText("");
+    txtCorreo.setText("");
+    }
+
+    @Override
+    public void showData(Patient data) {
+        txtCedula.setText(data.getId());
+        txtNombre.setText(data.getFullName());
+        txtFechaN.setText(data.getBirthDate().toString());
+        txtTelefono.setText(data.getPhone());
+        txtCorreo.setText(data.getEmail());
+        
+    }
+
+    @Override
+    public void showError(String error) {
+        javax.swing.JOptionPane.showMessageDialog(this, error);
+    }
+
+    @Override
+    public void showMessage(String message) {
+        javax.swing.JOptionPane.showMessageDialog(this, message);
+    }
 }

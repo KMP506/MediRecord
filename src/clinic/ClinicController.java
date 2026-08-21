@@ -9,6 +9,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Iterator;
 import patients.Patient;
+import clinic.views;
+
 
 /**
  *
@@ -16,12 +18,10 @@ import patients.Patient;
  */
 public class ClinicController {
     private final Clinic clinic;
-    private views vista;
-    
-    public ClinicController(views vista,Clinic clinic){
-        this.clinic = clinic;
-        this.vista=vista;
-    }
+
+    public ClinicController(views vista, Clinic clinic) {
+    this.clinic = clinic;
+}
     
     public void registrPaciente(Patient patient){
         if (clinic.addPatient(patient)){
