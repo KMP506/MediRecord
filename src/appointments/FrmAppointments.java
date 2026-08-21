@@ -104,17 +104,20 @@ public class FrmAppointments extends javax.swing.JFrame {
         lblNombre.setText("Nombre");
 
         txtId.setBackground(new java.awt.Color(204, 204, 204));
-        txtId.setForeground(new java.awt.Color(153, 153, 153));
+        txtId.setForeground(new java.awt.Color(0, 0, 0));
         txtId.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         txtReazon.setBackground(new java.awt.Color(204, 204, 255));
+        txtReazon.setForeground(new java.awt.Color(0, 0, 0));
         txtReazon.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txtReazon.addActionListener(this::txtReazonActionPerformed);
 
         txtName.setBackground(new java.awt.Color(204, 204, 255));
+        txtName.setForeground(new java.awt.Color(0, 0, 0));
         txtName.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         txtDate.setBackground(new java.awt.Color(204, 204, 255));
+        txtDate.setForeground(new java.awt.Color(0, 0, 0));
         txtDate.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         txtTime.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -214,29 +217,29 @@ public class FrmAppointments extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(0, 102, 102));
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton6.setBackground(new java.awt.Color(0, 204, 204));
+        jButton6.setBackground(new java.awt.Color(153, 153, 153));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icon24/Delete.png"))); // NOI18N
-        jButton6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        btnUpdate.setBackground(new java.awt.Color(0, 204, 204));
+        btnUpdate.setBackground(new java.awt.Color(153, 153, 153));
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icon24/New.png"))); // NOI18N
-        btnUpdate.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnUpdate.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton10.setBackground(new java.awt.Color(0, 204, 204));
+        jButton10.setBackground(new java.awt.Color(153, 153, 153));
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icon24/New.png"))); // NOI18N
-        jButton10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton10.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton11.setBackground(new java.awt.Color(0, 204, 204));
+        jButton11.setBackground(new java.awt.Color(153, 153, 153));
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icon24/Search.png"))); // NOI18N
-        jButton11.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton11.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton12.setBackground(new java.awt.Color(0, 204, 204));
+        jButton12.setBackground(new java.awt.Color(153, 153, 153));
         jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icon24/Save.png"))); // NOI18N
-        jButton12.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton12.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        btnCancel.setBackground(new java.awt.Color(0, 204, 204));
+        btnCancel.setBackground(new java.awt.Color(153, 153, 153));
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icon24/New.png"))); // NOI18N
-        btnCancel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCancel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
