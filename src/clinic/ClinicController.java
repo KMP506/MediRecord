@@ -104,6 +104,7 @@ public class ClinicController {
 
     public int cantidadEnEspera() {
         return clinic.getWaitingPatientCount();
-    }
+        
+    } 
     
 }
