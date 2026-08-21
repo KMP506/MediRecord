@@ -8,7 +8,7 @@ package clinic;
  *
  * @author isaac
  */
-public interface KeyDynamicsList<T,K> extends DynamicLists{
+public interface KeyDynamicsList<T,K> extends DynamicLists<T>{
     public T get(K id);
     public boolean remove(K id);
 }

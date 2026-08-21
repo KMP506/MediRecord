@@ -62,39 +62,78 @@ public class Clinic {
     }
 
     public boolean cancelAppointment(String code) {
+         if (appointments.isEmpty()) {
+            return false;
+        }
 
+        Appointment appo = appointments.get(code);
+
+        if (appo == null) {
+            return false;
+        }
+
+        appo.cancel();
+        return true;
     }
 
     public Iterator<Appointment> getAppointments() {
-
+        return appointments.getAll();
     }
 
     public boolean checkInPatient(String patientId) {
-        Iterator<Appointment> itAppo=appointments.getAll();
-        while(itAppo.hasNext()){
+  Iterator<Appointment> itAppo = appointments.getAll();
+
+        while (itAppo.hasNext()) {
+
             Appointment appo = itAppo.next();
-            if(appo.getPatient().getId().equals(patientId)&&appo.isToday()){
-                waitingRoom.add(appo.getPatient());
+
+            if (appo.getPatient().getId().equals(patientId)
+                    && appo.isToday()
+                    && appo.isPending()) {
+
+                return waitingRoom.add(appo.getPatient());
             }
         }
+
         return false;
     }
 
     public Patient getNextPatient() {
-        
-
+      return waitingRoom.get();
     }
 
     public Patient attendNextPatient() {
-        
+          Patient patient = waitingRoom.get();
+
+        if (patient == null) {
+            return null;
+        }
+
+        waitingRoom.remove();
+
+        return patient;
     }
 
     public int getWaitingPatientCount() {
-
+          return waitingRoom.size();
     }
 
     public boolean isPatientWaiting(String patientId) {
+        Iterator<Patient> iterator = waitingRoom.getAll();
 
+        if (iterator == null) {
+            return false;
+        }
+
+        while (iterator.hasNext()) {
+
+            Patient patient = iterator.next();
+
+            if (patient.getId().equals(patientId)) {
+                return true;
+            }
+        }
+
+        return false;
     }
-    
 }

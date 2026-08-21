@@ -20,8 +20,8 @@ public class AppointmentsLists implements KeyDynamicsList<Appointment, String> {
     public AppointmentsLists() {
         appointments = new TreeMap<>();
     }
-
-   
+    
+    @Override
     public boolean add(Appointment item) {
         if (item == null || item.getCode() == null) {
             return false;
@@ -34,13 +34,14 @@ public class AppointmentsLists implements KeyDynamicsList<Appointment, String> {
         appointments.put(item.getCode(), item);
         return true;
     }
-
     
+    @Override
     public Appointment get(String code) {
         return appointments.get(code);
     }
 
     
+    @Override
     public boolean remove(String code) {
         if (!appointments.containsKey(code)) {
             return false;
@@ -51,22 +52,21 @@ public class AppointmentsLists implements KeyDynamicsList<Appointment, String> {
     }
 
     
+    @Override
     public Iterator getAll() {
         return appointments.values().iterator();
     }
 
     
+    @Override
     public int size() {
         return appointments.size();
     }
 
     
+    @Override
     public boolean isEmpty() {
         return appointments.isEmpty();
     }
 
-    @Override
-    public boolean add(Object item) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

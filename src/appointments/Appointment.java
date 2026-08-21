@@ -68,9 +68,20 @@ public class Appointment {
     }
 
     public boolean isToday(){
-        return false;
+        return this.date != null && this.date.equals(LocalDate.now());
     }
-
     //public int compareTo(Appointment other); date → time → code
+     public int compareTo(Appointment other) {
+        int result = this.date.compareTo(other.date);
+        if (result != 0) {
+            return result;
+        }
 
+        result = this.time.compareTo(other.time);
+        if (result != 0) {
+            return result;
+        }
+
+        return this.code.compareTo(other.code);
+    }
 }
